@@ -1,0 +1,11 @@
+// You are using GCC
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    std::cin>>n;
+    string s=to_string(n);
+    std::cout<<s.length();
+}
