@@ -1,22 +1,15 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
     void generate(int open, int close, int n, string current, vector<string> &result) {
-        // If valid combination is formed
         if (current.length() == 2 * n) {
             result.push_back(current);
             return;
         }
 
-        // Add '(' if possible
         if (open < n) {
             generate(open + 1, close, n, current + '(', result);
         }
 
-        // Add ')' only if valid
         if (close < open) {
             generate(open, close + 1, n, current + ')', result);
         }
@@ -28,14 +21,3 @@ public:
         return result;
     }
 };
-
-int main() {
-    Solution obj;
-    vector<string> ans = obj.generateParenthesis(3);
-
-    for (string s : ans) {
-        cout << s << endl;
-    }
-
-    return 0;
-}
