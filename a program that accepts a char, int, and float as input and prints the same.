@@ -1,0 +1,11 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    char a;
+    int b;
+    float c;
+    cin>>a>>b>>c;
+    cout<< a << " " << b << " " << fixed << setprecision(2) <<c;
+}
