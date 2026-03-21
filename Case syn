@@ -1,0 +1,25 @@
+// You are using GCC
+#include<iostream>
+int main()
+{
+    int x,y;
+    char ch;
+    std::cin>>x>>y>>ch;
+    switch(ch)
+    {
+        case '+':
+            std::cout<<"The addition of the given numbers is "<<x+y<<".";
+            break;
+        case '-':
+            std::cout<<"The subtraction of the given numbers is "<<x-y<<".";
+            break;
+        case '*':
+            std::cout<<"The multiplication of the given numbers is "<<x*y<<".";
+            break;
+        case '/':
+            std::cout<<"The division of the given numbers is "<<float(x)/float(y)<<".";
+            break;
+        default:
+            std::cout<<"Invalid operation";
+    }
+}
