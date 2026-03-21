@@ -1,0 +1,22 @@
+
+#include<iostream>
+using namespace std;
+int main()
+{
+    int a,b,c,u,v,i,j,k;
+    cin>>a>>b>>c;
+    int x=a+b*5/4+c%3*5;
+    cout<<"x= "<<x<<endl;
+    cin>>u>>v;
+    if (u>v)
+    {
+        cout<<"y= "<<u<<endl;
+    }
+    else{
+        cout<<"y= "<<v<<endl;
+    }
+    cin>>i>>j>>k;
+    int z=++i&&++j&&++k;
+    cout<<"z= "<<z;
+    return 0;
+}
