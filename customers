@@ -1,0 +1,23 @@
+// You are using GCC
+#include<iostream>
+int main()
+{
+    int a,g;
+    std::cin>>a>>g;
+    if (g==1)
+        if(a<25)
+            std::cout<<"The person belongs to Group 1.";
+        else if(a>=25 && a<=45)
+            std::cout<<"The person belongs to Group 3.";
+        else 
+            std::cout<<"The person belongs to Group 5.";
+    else if(g==2)
+        if(a<25)
+            std::cout<<"The person belongs to Group 2.";
+        else if(a>=25 && a<=45)
+            std::cout<<"The person belongs to Group 4.";
+        else
+            std::cout<<"The person belongs to Group 5.";
+    else
+        std::cout<<"Invalid";
+}
