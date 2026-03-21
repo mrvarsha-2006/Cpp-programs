@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+void num(long long n)
+{
+    int sume=0,sumo=0;
+    while(n>0)
+    {
+        int d=n%10;
+        if (d%2==0)
+        {
+            sume+=d;
+        }
+        else
+        {
+            sumo+=d;
+        }
+        n/=10;
+    }
+    std::cout<<sumo<<" "<<sume<<endl;
+}
+int main()
+{
+    try
+    {
+        long long n;
+        std::cin>>n;
+        num(n);
+    }
+    catch(exception &e)
+    {
+        
+    }
+}
