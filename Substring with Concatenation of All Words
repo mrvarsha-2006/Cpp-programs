@@ -1,0 +1,55 @@
+#include <vector>
+#include <string>
+#include <unordered_map>
+
+class Solution {
+public:
+    std::vector<int> findSubstring(std::string s, std::vector<std::string>& words) {
+        std::vector<int> result;
+        if (s.empty() || words.empty()) return result;
+
+        int wordLen = words[0].length();
+        int wordCount = words.size();
+        int totalLen = wordLen * wordCount;
+        int sLen = s.length();
+
+        if (sLen < totalLen) return result;
+
+        std::unordered_map<std::string, int> wordFreq;
+        for (const std::string& w : words) wordFreq[w]++;
+
+        // We run the sliding window wordLen times to cover all possible offsets
+        for (int i = 0; i < wordLen; ++i) {
+            int left = i, count = 0;
+            std::unordered_map<std::string, int> seen;
+
+            for (int j = i; j <= sLen - wordLen; j += wordLen) {
+                std::string word = s.substr(j, wordLen);
+
+                if (wordFreq.count(word)) {
+                    seen[word]++;
+                    count++;
+
+                    // If we have more occurrences of 'word' than in words[], shift left
+                    while (seen[word] > wordFreq[word]) {
+                        std::string leftWord = s.substr(left, wordLen);
+                        seen[leftWord]--;
+                        count--;
+                        left += wordLen;
+                    }
+
+                    // If count matches wordCount, we found a valid concatenation
+                    if (count == wordCount) {
+                        result.push_back(left);
+                    }
+                } else {
+                    // Not a valid word, reset the window
+                    seen.clear();
+                    count = 0;
+                    left = j + wordLen;
+                }
+            }
+        }
+        return result;
+    }
+};
