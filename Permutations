@@ -1,0 +1,30 @@
+#include <vector>
+#include <algorithm>
+
+class Solution {
+public:
+    void backtrack(int start, std::vector<int>& nums, std::vector<std::vector<int>>& result) {
+        // Base case: if we've reached the end of the array, a permutation is complete
+        if (start == nums.size()) {
+            result.push_back(nums);
+            return;
+        }
+
+        for (int i = start; i < nums.size(); ++i) {
+            // Swap the current element with the element at the 'start' position
+            std::swap(nums[start], nums[i]);
+            
+            // Recursively generate permutations for the remaining elements
+            backtrack(start + 1, nums, result);
+            
+            // Backtrack: swap back to restore the original state for the next iteration
+            std::swap(nums[start], nums[i]);
+        }
+    }
+
+    std::vector<std::vector<int>> permute(std::vector<int>& nums) {
+        std::vector<std::vector<int>> result;
+        backtrack(0, nums, result);
+        return result;
+    }
+};
