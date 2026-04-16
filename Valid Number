@@ -1,0 +1,39 @@
+#include <string>
+
+class Solution {
+public:
+    bool isNumber(std::string s) {
+        bool seenDigit = false;
+        bool seenDot = false;
+        bool seenE = false;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s[i];
+            
+            if (isdigit(c)) {
+                seenDigit = true;
+            } 
+            else if (c == '+' || c == '-') {
+                // Signs can only be at index 0 OR immediately after 'e'/'E'
+                if (i > 0 && s[i-1] != 'e' && s[i-1] != 'E') return false;
+            } 
+            else if (c == '.') {
+                // Dot is invalid if we've already seen an 'e' or another '.'
+                if (seenE || seenDot) return false;
+                seenDot = true;
+            } 
+            else if (c == 'e' || c == 'E') {
+                // Exponent is invalid if we've already seen an 'e' OR haven't seen a digit yet
+                if (seenE || !seenDigit) return false;
+                seenE = true;
+                seenDigit = false; // Reset for the mandatory integer after 'e'
+            } 
+            else {
+                // Any other character (like 'a') is invalid
+                return false;
+            }
+        }
+        
+        return seenDigit; // Must end with a digit (handles cases like "3e" or ".")
+    }
+};
