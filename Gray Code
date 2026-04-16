@@ -1,0 +1,18 @@
+#include <vector>
+
+class Solution {
+public:
+    std::vector<int> grayCode(int n) {
+        std::vector<int> result;
+        // A Gray code sequence of length n has 2^n numbers
+        int numElements = 1 << n;
+        result.reserve(numElements);
+        
+        for (int i = 0; i < numElements; i++) {
+            // Apply the standard Binary to Gray conversion formula
+            result.push_back(i ^ (i >> 1));
+        }
+        
+        return result;
+    }
+};
